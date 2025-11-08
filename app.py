@@ -3,6 +3,9 @@ import streamlit as st
 from resume_screener import process_resumes, rank_resumes, embeddings
 from langchain_community.vectorstores import Chroma
 import os, glob, json
+import shutil
+from dotenv import load_dotenv
+load_dotenv()
 
 st.set_page_config(page_title="Smart Resume Screener", layout="wide")
 st.title("🤖 Smart Resume Screener")

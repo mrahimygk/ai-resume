@@ -5,11 +5,19 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 import os
 import shutil
-from langchain_ollama import ChatOllama
+#from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 
+load_dotenv()
+
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-llm = ChatOllama(model="llama3.2:3b", temperature=0)
+#llm = ChatOllama(model="llama3.2:3b", temperature=0)
+llm = ChatGroq(
+    model="llama-3.1-70b-versatile",
+    temperature=0,
+    groq_api_key=os.getenv("GROQ_API_KEY")
 
 def clear_vectorstore():
     if os.path.exists("vectorstore"):
